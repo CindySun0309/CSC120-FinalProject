@@ -2,13 +2,26 @@ import java.util.ArrayList;
 
 public class Location {
     private ArrayList<Animal> animals;
+    private String description;
+    private String name;
 
-    private Location(ArrayList<Animal> animals) {
-        this.animals = animals;
-    }
+public Location(String name, String description){
+    this.name = name;
+    this.description = description;
+}
 
-    public void addAnimal() {
-        this.animals.add(Animal());
-    }
+public Location(String name, String description, ArrayList<Animal> animals) {
+    this.name = name;
+    this.description = description;
+    this.animals = animals;
+ }    
+
+public String getName() {
+    return name;
+}
+
+public String getdescription() {
+    return description;
+}
 
 }

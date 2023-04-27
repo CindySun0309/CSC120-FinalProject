@@ -1,3 +1,3 @@
 public enum AnimalMouthType {
-    beak, bill, mouth
+    beak, bill, mouth, fishmouth
 }
