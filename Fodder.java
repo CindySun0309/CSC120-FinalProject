@@ -1,5 +1,3 @@
-import java.lang.invoke.StringConcatFactory;
-
 public class Fodder {
     private int price;
     private String name;
