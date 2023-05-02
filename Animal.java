@@ -9,9 +9,10 @@ public class Animal {
     private int price;
     private int hungryValue;
     private String fodderType;
+    private Location livingLocation;
     
 
-    public Animal(String name, String description, boolean haslegs, int legnum, boolean haswings, int wingnum,int price, AnimalMouthType mouthtype, int hungryValue, String fodderType) {
+    public Animal(String name, String description, boolean haslegs, int legnum, boolean haswings, int wingnum,int price, AnimalMouthType mouthtype, int hungryValue, String fodderType, Location livingLocation) {
         this.name = name;
         this.description = description;
         this.haslegs = haslegs;
@@ -22,6 +23,7 @@ public class Animal {
         this.hungryValue = hungryValue;
         this.price = price;
         this.fodderType = fodderType;
+        this.livingLocation = livingLocation;
     }
 
     public String getName() {
@@ -42,5 +44,9 @@ public class Animal {
 
     public String getfodderType() {
         return fodderType;
+    }
+
+    public Location getLivingLocation() {
+        return livingLocation;
     }
 }

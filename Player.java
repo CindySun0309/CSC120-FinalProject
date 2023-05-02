@@ -1,18 +1,20 @@
 import java.util.ArrayList;
 
+import javax.sound.midi.Soundbank;
+
 public class Player {
     private String name;
     private int money;
     private ArrayList<Animal> inventory;
-    private String location;
+    private Location location;
     private Farm myfarm;
 
     public Player(String name) {
         this.name = name;
         this.money = 0;
-        this.inventory = null;
-        this.location = "Farm";
-        this.myfarm = new Farm("my farm", "This is my farm", new ArrayList<Animal>());
+        this.inventory = new ArrayList<>();  
+        this.myfarm = new Farm("your farm");
+        this.location = myfarm;
     }
 
     public String getName() {
@@ -35,9 +37,13 @@ public class Player {
         return inventory;
     }
 
+    public Location getLocation() {
+        return location;
+    }    
+
 
     public void sell(Animal animal) {
-        if (location == "Shop") {
+        if (location instanceof Shop) {
             this.inventory.remove(animal);
             this.money += animal.getPrice();
         } else {
@@ -45,26 +51,26 @@ public class Player {
         }
     }
 
-    public void buy(Fodder fodder, Farm myfarm) {
-        if (location == "Shop" && money >= fodder.getPrice()) {
-            myfarm.addTofodderInventory(fodder);
+    public void buy(Fodder fodder) {
+        if (location instanceof Shop && money >= fodder.getPrice()) {
+            myfarm.getFodderInventory().add(fodder);
             this.money -= fodder.getPrice();
         } else {
             System.out.println("You should move to the shop to buy fodder and have enough money!");
-        }
+        }        
     }
 
-    public void move(String newLocation) {
-        if (newLocation == "farm" || newLocation =="river" || newLocation =="forest" ||newLocation =="grassland"||newLocation =="shop") {
+    public void move(Location newLocation) {
+        if (newLocation != null) {
             this.location = newLocation;
-            System.out.println("You are now in " + this.location + "!");
+            System.out.println("You are now at " + this.location.getName() + "!");
         } else {
-            System.out.println(newLocation + " is not valid! Please enter a valid location. (possible options: farm, river, forest, grassland, shop)");
+            System.out.println("Invalid location. Please enter a valid location.");
         }
     }
 
     public void feed(Animal animal, Fodder fodder) {
-        if (location == "Farm") {
+        if (location instanceof Farm) {
             if (myfarm.getFodderInventory().contains(fodder)) {
                 if (animal.getfodderType().equals(fodder.getName())&& animal.gethungryValue()<=0) {
                     myfarm.removeFromfodderInventory(fodder);
@@ -78,17 +84,19 @@ public class Player {
         }
     }
 
-    public void combine(Animal animal) {
-        if (inventory.contains("rabbit") && inventory.contains("fish")) {
-            this.inventory.remove("rabbit");
-            this.inventory.remove("fish");
-            this.inventory.add(animal);
-            System.out.println("Combined " + animal.getName() + " and " + animal.getName() + " into " + animal.getName());
-        } else {
-            System.out.println("You don't have both " + animal.getName() + " and " + animal.getName() + " in your inventory.");
+    public void combine(Animal animal1, Animal animal2, Animal animal3) {
+        if (this.inventory.contains(animal1) && this.inventory.contains(animal2)) {
+            this.inventory.remove(animal1);
+            this.inventory.remove(animal2);
+            this.inventory.add(animal3);
+            //if (animal1.getName().equals("rabbit") || animal2.getName().equals("rabbit")) {
+                //if (animal1.getName().equals("fish") || animal2.getName().equals("fish")) {
+                    //this.inventory.add();
+                //} 
+            //}
         }
     }
-    
+
     public void throwaway(Animal animal) {
         if (inventory.contains(animal)){
             this.inventory.remove(animal);
@@ -103,6 +111,16 @@ public class Player {
             myfarm.addToInventory(animal);
         } else {
             System.out.println("You don't have  " + animal.getName() + " in your inventory.");
+        }
+    }
+
+    public void catchAnimal(Animal animal) {
+        if (this.inventory.size() > 0 && this.inventory.size() <=5) {
+            this.inventory.add(animal);
+        }
+        else {
+            System.out.println("Sorry! Your inventory is full! Maximum capacity is 5. The " + animal.getName() + "has been thrown away :(");
+            throwaway(animal);
         }
     }
 }
