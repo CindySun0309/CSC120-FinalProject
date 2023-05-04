@@ -8,19 +8,23 @@ public class StartGame {
         Farm farm = new Farm("farm");
         Shop shop = new Shop("shop");
 
-        Animal rabbit = new Animal("rabbit", "This is a rabbit", true, 4, false, 0, 2, grassland);
-        Animal tiger = new Animal("tiger", "This is a tiger", true, 4, false, 0, 3,  grassland);
-        Animal fish = new Animal("fish", "This is a fish", false, 0, false, 0, 1, river);
-        Animal crab = new Animal("crab", "This is a crab", true, 10, false, 0, 2, river);
-        Animal zebra = new Animal("zebra", "This is a zebra", true, 4, false, 0, 2, grassland);
-        Animal bird = new Animal("bird", "This is a bird", true, 2, true, 2, 2,forest);
-        Animal frog = new Animal("frog", "This is a frog", true, 4, false, 0, 1, forest);
+        Animal rabbit = new Animal("rabbit", "This is a rabbit", true, 4, false, 0, 4, grassland);
+        Animal tiger = new Animal("tiger", "This is a tiger", true, 4, false, 0, 6,  grassland);
+        Animal fish = new Animal("fish", "This is a fish", false, 0, false, 0, 2, river);
+        Animal crab = new Animal("crab", "This is a crab", true, 10, false, 0, 4, river);
+        Animal shrimp = new Animal("shrimp", "This is a shrimp", true, 10, false, 0, 4, river);
+        Animal zebra = new Animal("zebra", "This is a zebra", true, 4, false, 0, 4, grassland);
+        Animal bird = new Animal("bird", "This is a bird", true, 2, true, 2, 4,forest);
+        Animal frog = new Animal("frog", "This is a frog", true, 4, false, 0, 2, forest);
+        Animal butterfly = new Animal("butterfly", "This is a butterfly", true, 4, true, 2, 4, forest);
 
         forest.addAnimal(bird);
         forest.addAnimal(frog);
+        forest.addAnimal(butterfly);
 
         river.addAnimal(fish);
         river.addAnimal(crab);
+        river.addAnimal(shrimp);
 
         grassland.addAnimal(tiger);
         grassland.addAnimal(zebra);
@@ -31,7 +35,7 @@ public class StartGame {
         System.out.println("Enter username:");
 
         String userName = input.nextLine(); 
-        System.out.println("Your name is: " + userName + ". You are a farmer and has a big farm! \nNow start your exploration!"); 
+        System.out.println("Your name is: " + userName + ". You are a farmer and have a big farm! \nNow start your exploration!"); 
 
         Player player = new Player(userName, farm);
 
@@ -58,12 +62,12 @@ public class StartGame {
                 else if (userNewLocation.contains("FOREST")) {
                     player.move(forest);
                     currentLocation = player.getLocation();
-                    System.out.println("You are surrounded by tall trees. The fresh air will make you feel relaxed. \nYou hear the frogs croaking and the birds singing.");
+                    System.out.println("You are surrounded by tall trees. The fresh air will make you feel relaxed. \nYou hear the frogs croaking, butterfly flying and the birds singing.");
                 }
                 else if (userNewLocation.contains("RIVER")) {
                     player.move(river);
                     currentLocation = player.getLocation();
-                    System.out.println("The river in front of you is very clear. You can't help but take off \nyour shoes and socks and run into the water. There are fish swimming, and \ncrabs are lying on the edge of the river.");
+                    System.out.println("The river in front of you is very clear. You can't help but take off \nyour shoes and socks and run into the water. There are fish and shrimps swimming, as well as \ncrabs are lying on the edge of the river.");
                 }
                 else if (userNewLocation.contains("GRASSLAND")) {
                     player.move(grassland);
@@ -150,7 +154,7 @@ public class StartGame {
             }
 
             else if (userMovement.equals("GET FROM FARM")) {
-                System.out.println("What animal do you want to put in to the farm?");
+                System.out.println("What animal do you want to get from to the farm?");
                 String animalToGet = input.nextLine().toUpperCase();
     
                 Animal getAnimal = null;
