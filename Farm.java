@@ -6,8 +6,8 @@ public class Farm extends Location {
 
     public Farm(String name) {
         super(name);
-        this.inventory = null;
-        this.fodderInventory = null;
+        this.inventory = new ArrayList<>();
+        this.fodderInventory = new ArrayList<>();
     }
 
     public Farm(String name, ArrayList<Animal> inventory) {
@@ -16,8 +16,23 @@ public class Farm extends Location {
         this.fodderInventory = null;
     }
 
+    public String getAnimalInventory() {
+        if (inventory.size() == 0) {
+            return "Your inventory in the farm is empty.";
+        }
+        StringBuilder inventoryString = new StringBuilder("Farm Inventory:\n");
+        for (Animal animal : inventory) {
+         inventoryString.append("- ").append(animal.getName()).append("\n");
+        }
+        return inventoryString.toString();
+        }
+
     public String getName() {
         return "Farm";
+    }
+
+    public ArrayList<Animal> getInventory() {
+        return this.inventory;
     }
 
     public ArrayList<Fodder> getFodderInventory() {
@@ -41,5 +56,6 @@ public class Farm extends Location {
     }
 
     
+
 }
 

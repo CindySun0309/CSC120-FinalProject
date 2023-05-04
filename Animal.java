@@ -5,25 +5,35 @@ public class Animal {
     private int legnum;
     private boolean haswings;
     private int wingnum;
-    private AnimalMouthType mouthtype;
     private int price;
-    private int hungryValue;
-    private String fodderType;
     private Location livingLocation;
     
 
-    public Animal(String name, String description, boolean haslegs, int legnum, boolean haswings, int wingnum,int price, AnimalMouthType mouthtype, int hungryValue, String fodderType, Location livingLocation) {
+    public Animal(String name, String description, boolean haslegs, int legnum, boolean haswings, int wingnum,int price, Location livingLocation) {
         this.name = name;
         this.description = description;
         this.haslegs = haslegs;
         this.legnum = legnum;
         this.haswings = haswings;
         this.wingnum = wingnum;
-        this.mouthtype = mouthtype;
-        this.hungryValue = hungryValue;
         this.price = price;
-        this.fodderType = fodderType;
         this.livingLocation = livingLocation;
+    }
+
+    public boolean getHaslegs() {
+        return haslegs;
+    }
+
+    public boolean hasWings() {
+        return haswings;
+    }
+
+    public int getLegNum() {
+        return legnum;
+    }
+
+    public int getWingNum() {
+        return wingnum;
     }
 
     public String getName() {
@@ -36,14 +46,6 @@ public class Animal {
 
     public int getPrice() {
         return price;
-    }
-
-    public int gethungryValue() {
-        return hungryValue;
-    }
-
-    public String getfodderType() {
-        return fodderType;
     }
 
     public Location getLivingLocation() {
