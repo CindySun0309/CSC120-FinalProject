@@ -278,6 +278,9 @@ public class StartGame {
                     System.out.println();
                 }
             }
+            else if (userMovement.contains("REDO")) {
+                System.out.println("Sorry! We are still working on this command!\nPlease try another command :)");
+            }
 
             else {
                 System.out.println("Please enter a valid command.");
