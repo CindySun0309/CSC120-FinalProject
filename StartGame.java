@@ -58,14 +58,17 @@ public class StartGame {
                 else if (userNewLocation.contains("FOREST")) {
                     player.move(forest);
                     currentLocation = player.getLocation();
+                    System.out.println("You are surrounded by tall trees. The fresh air will make you feel relaxed. \nYou hear the frogs croaking and the birds singing.");
                 }
                 else if (userNewLocation.contains("RIVER")) {
                     player.move(river);
                     currentLocation = player.getLocation();
+                    System.out.println("The river in front of you is very clear. You can't help but take off \nyour shoes and socks and run into the water. There are fish swimming, and \ncrabs are lying on the edge of the river.");
                 }
                 else if (userNewLocation.contains("GRASSLAND")) {
                     player.move(grassland);
                     currentLocation = player.getLocation();
+                    System.out.println("A group of leisurely zebras was suddenly frightened by running rabbits, \nand it turned out that there was a group of tigers staring at the group \nof zebras intently nearby! You can't help but wonder, does something \nlike this happen everyday?");
                 }
                 else if (userNewLocation.contains("SHOP")) {
                     player.move(shop);
