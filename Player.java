@@ -63,7 +63,7 @@ public class Player {
             int combinedLegNum = animal1.getLegNum() + animal2.getLegNum();
             boolean combinedHasWings = animal1.hasWings() && animal2.hasWings();
             int combinedWingNum = animal1.getWingNum() + animal2.getWingNum();
-            int combinedPrice = animal1.getPrice() + animal2.getPrice();
+            int combinedPrice = animal1.getPrice() + animal2.getPrice() +2;
             Location combinedLivingLocation = null; // Set to null by default
 
             Animal combinedAnimal = new Animal(combinedName, combinedDescription, combinedHasLegs, combinedLegNum, combinedHasWings, combinedWingNum, combinedPrice, combinedLivingLocation);
@@ -113,7 +113,6 @@ public class Player {
         }
     }
     
-
     public void catchAnimal(Animal animal) {
         if (this.inventory.size() < 5) {
             this.inventory.add(animal);

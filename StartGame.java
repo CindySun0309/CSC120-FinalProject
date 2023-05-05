@@ -6,7 +6,7 @@ public class StartGame {
         Location river = new Location("river");
         Location grassland = new Location("grassland");
         Farm farm = new Farm("farm");
-        Shop shop = new Shop("shop");
+        Location shop = new Location("shop");
 
         Animal rabbit = new Animal("rabbit", "This is a rabbit", true, 4, false, 0, 4, grassland);
         Animal tiger = new Animal("tiger", "This is a tiger", true, 4, false, 0, 6,  grassland);
@@ -269,7 +269,7 @@ public class StartGame {
                         }
                     } 
                     else {
-                        System.out.println("You do not have any " + animalToSell + " in your bag!");
+                        System.out.println("You do not have any " + animalToSell + " in your bag! Try to catch one first!");
                     }
                 }
                 else {
@@ -356,7 +356,9 @@ public class StartGame {
                 System.out.println("Please enter a valid command.");
             }
         }
+        System.out.println("-------------------------------------------------------");
         System.out.println("Congratulation! You earned 20 dollars and won the game!");
+        System.out.println("-------------------------------------------------------");
     }
 }
 
