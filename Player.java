@@ -37,9 +37,9 @@ public class Player {
     public String printAnimalInInventory() {
         if (inventory.size() == 0) {
             System.out.println("You currently have " + this.getMoney() + " dollar(s) in your pocket.");
-            return "Your inventory is empty.";
+            return "Your bag is empty.";
         }
-        StringBuilder inventoryString = new StringBuilder("Inventory:\n");
+        StringBuilder inventoryString = new StringBuilder("Your bag has:\n");
         for (Animal animal : inventory) {
             inventoryString.append("- ").append(animal.getName()).append("\n");
         }
@@ -76,17 +76,18 @@ public class Player {
             this.actions.add("COMBINE");
             } 
         else {
-            System.out.println("You do not have both of these animals in your inventory.");
+            System.out.println("You do not have both of these animals in your bag.");
         }
         }
 
     public void throwaway(Animal animal) {
         if (inventory.contains(animal)){
             this.inventory.remove(animal);
-            System.out.println("You threw away the " + animal.getName() + ".");
+            System.out.println("You threw away a " + animal.getName() + ".");
+            this.actions.add("THROW AWAY");
         } 
         else {
-            System.out.println("You don't have  " + animal.getName() + " in your inventory.");
+            System.out.println("You don't have " + animal.getName() + " in your bag to throw away.");
         }
     }
 
@@ -94,9 +95,10 @@ public class Player {
         if (inventory.contains(animal)){
             this.inventory.remove(animal);
             myfarm.addToInventory(animal);
+            System.out.println("You put a " + animal.getName() + " in the farm inventory.");
         } 
         else {
-            System.out.println("You don't have  " + animal.getName() + " in your inventory.");
+            System.out.println("You don't have " + animal.getName() + " in your bag currently to put in the farm inventory.");
         }
     }
 
@@ -104,10 +106,10 @@ public class Player {
         if (myfarm.getInventory().contains(animal)) {
             myfarm.removeFromInventory(animal);
             inventory.add(animal);
-            System.out.println("You took the " + animal.getName() + " from the farm.");
+            System.out.println("You took a " + animal.getName() + " from the farm inventory and put it into your bag.");
         } 
         else {
-            System.out.println("The " + animal.getName() + " is not in the farm.");
+            System.out.println("The " + animal.getName() + " is not in the farm inventory.");
         }
     }
     
@@ -118,10 +120,9 @@ public class Player {
             this.actions.add("CATCH");
             this.lastAnimalCaught = animal;
             System.out.println("You caught a " + animal.getName() + "!");
-            System.out.println(this.actions);
         } 
         else {
-            System.out.println("Sorry! Your inventory is full! Maximum capacity is 5.");
+            System.out.println("Sorry! Your bag is full! Maximum capacity is 5.");
             throwaway(animal);
         }
     }

@@ -16,7 +16,7 @@ public class Farm extends Location {
 
     public String getAnimalInventory() {
         if (inventory.size() == 0) {
-            return "Your inventory in the farm is empty.";
+            return "Your farm inventory is empty.";
         }
         StringBuilder inventoryString = new StringBuilder("Farm Inventory:\n");
         for (Animal animal : inventory) {
@@ -26,7 +26,7 @@ public class Farm extends Location {
         }
 
     public String getName() {
-        return "Farm";
+        return "farm";
     }
 
     public ArrayList<Animal> getInventory() {
@@ -38,11 +38,7 @@ public class Farm extends Location {
     }
 
     public void removeFromInventory(Animal animal) {
-        inventory.remove(animal);
+        this.inventory.remove(animal);
     }
-
-
-    
-
 }
 
