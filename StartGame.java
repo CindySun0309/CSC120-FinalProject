@@ -44,7 +44,7 @@ public class StartGame {
 
 
         while (player.getMoney() < 20){
-            System.out.println("\nWhat do you want to do next? \nAvailable options: move, catch, sell, combine, throw away, put in farm, get from farm, show inventory, and redo.");
+            System.out.println("\nWhat do you want to do next? \nAvailable options: move, catch, sell, combine, throw away, put in farm, get from farm, show inventory, and undo.");
             String userMovement = input.nextLine().toUpperCase();
 
             if (userMovement.contains("MOVE")) {
@@ -52,7 +52,7 @@ public class StartGame {
                 String userNewLocation = input.nextLine().toUpperCase();
                 System.out.println("Moving...");
     
-                if (userNewLocation.contains(currentLocation.getName())) {
+                if (userNewLocation.contains(currentLocation.getName().toUpperCase())) {
                     System.out.println("Oops! You are already at " + userNewLocation + "!");
                 }
                 else if (userNewLocation.contains("FARM")) {
@@ -89,16 +89,15 @@ public class StartGame {
                 String animalToCatch = input.nextLine().toUpperCase();
     
                 Animal targetAnimal = null;
-                for (Animal animal : currentLocation.getLivingAnimals()) {
+                for (Animal animal : player.getLocation().getLivingAnimals()) {
                     if (animalToCatch.contains(animal.getName().toUpperCase())) {
                         targetAnimal = animal;
                     }
                 }
                 
                 if (targetAnimal != null) {
-                    if (currentLocation.equals(targetAnimal.getLivingLocation())) {
+                    if (player.getLocation().equals(targetAnimal.getLivingLocation())) {
                         player.catchAnimal(targetAnimal);
-                        System.out.println("You caught a " + targetAnimal.getName() + "!");
                     } else {
                         System.out.println("The " + targetAnimal.getName() + " is not in this location.");
                     }
@@ -276,24 +275,47 @@ public class StartGame {
                 if (targetCombine1 == null || targetCombine2 == null) {
                     System.out.println("One or more of the animals you have entered cannot be found in your bag.");
                 } else if (targetCombine1 == targetCombine2) {
-                    System.out.println("You use the same animal to combine! Please use two different animals to combine!");
+                    System.out.println("You use the same animal to combine! Please use two different animals to combine!\nYou don't want to waste 2 " + targetCombine1.getName() + "(s) to create 1 new " + targetCombine1.getName() + ", right? :)");
                 } else {
                     player.combine(targetCombine1,targetCombine2);
                     System.out.println();
                 }
             }
-            else if (userMovement.contains("REDO")) {
-                System.out.println("Sorry! We are still working on this command!\nPlease try another command :)");
+            else if (userMovement.contains("UNDO")) {
+                try {
+                    if (player.getActions().get(player.getActions().size()-1) == "MOVE") {
+                        System.out.println("You thought: Maybe I should not come to the " + player.getLocation().getName() + " now...\nSo you moved back...");
+                        player.unmove(player.getLocation());
+                        player.getActions().remove(player.getActions().size()-1);
+                        System.out.println(player.getActions());
+                        
+                    }
+                    else if (player.getActions().get(player.getActions().size()-1) == "CATCH") {
+                        System.out.println("You thought: Maybe I should not catch " + player.getLastAnimalCaught().getName() + " now...\nSO");
+                        player.throwaway(player.getLastAnimalCaught());
+                        player.getActions().remove(player.getActions().size()-1);
+                        System.out.println(player.getActions());
+                    }
+                    else if (player.getActions().get(player.getActions().size()-1) == "COMBINE") {
+                        System.out.println("Oops! Once you tried to combine two animals, those two animals no longer exist, \nno matter you failed to create a new animal or not :(");
+                    }
+                    else if (player.getActions().remove(player.getActions().size()-1) == "") {
+
+                    }
+                } catch(Exception e) {
+                    System.out.println("Oops! No more undo available!");
+                }
+                
+                
+                
             }
 
             else {
                 System.out.println("Please enter a valid command.");
             }
-
-            
         }
-        
-        
+        System.out.println("Congratulation! You earned 20 dollars and won the game!");
     }
+    
 }
 

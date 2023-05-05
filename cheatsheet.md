@@ -1,53 +1,62 @@
-This file will contain documentation for all commands available in your game.
+We are creating an interactive farm, and the player is a farmer. 
 
-Note:  It's a good idea to also make this list available inside the game, in response to a `HELP` command.
+The player can:
+Explore the map, move to different locations (ie. river, forest, and grassland).
+Catch animals in specific locations, such as catch fish only in the river, catch birds only in the forest, and catch tigers only on the grassland. 
+Sell animals you caught in the shop to get money.
+Use two different animals to create a new creature!
+Put animals in the farm.
+Throw away the animals in your inventory. Reminder: Your inventory can contain maximum 5 animals. Otherwise, you can throw away or put animals into the farm inventory which don't have the size limit.
+Get animals from the farm. 
+Show your inventory.
+Redo actions: move, catch, sell, throw away, put in farm, get from farm, combine. 
 
-We are creating an interactive farm, and the player is a farmer. The player can explore the map to catch different animals and sell them to get money, buy fodder to feed animals, and also combine animals to create new creatures (sometimes will not be successful— if successful, the new creature will be sold at higher prices, and if failed, then the farmer will lose animals). The goal of the game is to collect all creatures in this world.
-Sorry but currently all of our classes are disconnected, so it can't be played for now:(
+The animals are preset by the game, including traits like leg numbers, wing numbers, price, pop-up locations etc. 
+
+Once you sell animals and have 20 dollars, the game ends! Congratulations! 
+
 
 methods for the Location class:
 getName()
-getdescription()
+getLivingAnimals()
+addAnimal()
 
 methods for the Farm class:
+getAnimalInventory()
+getName()
+getInventory()
 addToInventory()
 removeFromInventory()
-addToFodderInventory()
-removeFromFodderInventory()
-
-methods for the Nature class:
-getAnimals() — not yet done
-getName() — not yet done
-getDescription() — not yet done
 
 methods for the Animal class:
+getHaslegs()
+hasWings()
+getLegNum()
+getWingNum()
 getName()
 getdescription()
 getPrice()
-gethungryvalue()
-getfodderType()
+getLivingLocation()
 
 methods for the Player class:
 getName()
-getmoney()
-addmoney()
-subtractMoney()
+getMoney()
 getInventory()
-sell()
-buy()
+getLocation()
+addMoney()
+subtractMoney()
+printAnimalInInventory()
 move()
-feed()
 combine()
 throwaway()
 putInFarm()
+getFromFarm()
+catchAnimal()
 
 methods for the Shop class:
-restock()  — not yet done
-
-methods for the Fodder class:
 getName()
-getPrice()
 
-# SPOILER ALERT
-
-If your game includes challenges that must be overcome to win, also list them below.
+methods for the Location class:
+getName()
+addAnimal()
+getLivingAnimals()
