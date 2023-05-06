@@ -1,57 +1,91 @@
 import java.util.Scanner;
+
+/**
+The StartGame class is the main class for the game to run.
+*/
 public class StartGame {
+
+    /** This is the main we used to run our codes */
     public static void main(String[]args){
         
+        /** Create the forest */
         Location forest = new Location("forest");
+        /** Create the river */
         Location river = new Location("river");
+        /** Create the grassland */
         Location grassland = new Location("grassland");
+        /** Create the farm */
         Farm farm = new Farm("farm");
+        /** Create the shop */
         Location shop = new Location("shop");
 
+        /** Create rabbit */
         Animal rabbit = new Animal("rabbit", "This is a rabbit", true, 4, false, 0, 4, grassland);
+        /** Create tiger */
         Animal tiger = new Animal("tiger", "This is a tiger", true, 4, false, 0, 6,  grassland);
+        /** Create fish */
         Animal fish = new Animal("fish", "This is a fish", false, 0, false, 0, 2, river);
+        /** Create crab */
         Animal crab = new Animal("crab", "This is a crab", true, 10, false, 0, 4, river);
+        /** Create shrimp */
         Animal shrimp = new Animal("shrimp", "This is a shrimp", true, 10, false, 0, 4, river);
+        /** Create zebra */
         Animal zebra = new Animal("zebra", "This is a zebra", true, 4, false, 0, 4, grassland);
+        /** Create bird */
         Animal bird = new Animal("bird", "This is a bird", true, 2, true, 2, 4,forest);
+        /** Create frog */
         Animal frog = new Animal("frog", "This is a frog", true, 4, false, 0, 2, forest);
+        /** Create butterfly */
         Animal butterfly = new Animal("butterfly", "This is a butterfly", true, 4, true, 2, 4, forest);
 
+        /** Add bird to the forest */
         forest.addAnimal(bird);
+        /** Add frog to the forest */
         forest.addAnimal(frog);
+        /** Add butterfly to the forest */
         forest.addAnimal(butterfly);
 
+        /** Add fish to the river */
         river.addAnimal(fish);
+        /** Add crab to the river */
         river.addAnimal(crab);
+        /** Add shrimp to the river */
         river.addAnimal(shrimp);
 
+        /** Add tiger to the grassland */
         grassland.addAnimal(tiger);
+        /** Add zebra to the grassland */
         grassland.addAnimal(zebra);
+        /** Add rabbit to the grassland */
         grassland.addAnimal(rabbit);
 
-
+        /** Open the scanner for the player to input commmands */
         Scanner input = new Scanner(System.in);  
+
+        /** Ask the player to enter their name */
         System.out.println("Enter username:");
-
         String userName = input.nextLine(); 
-        System.out.println("Your name is: " + userName + ". You are a farmer and have a big farm! \nNow start your exploration!"); 
+        System.out.println("Your name is: " + userName + ". You are a farmer and own a big farm! \nYour goal is to earn 50 dollars. Now start your exploration!"); 
 
+        /** Create the player */
         Player player = new Player(userName, farm);
 
-
+        /** Set the player's current location to currentlocation */
         Location currentLocation = player.getLocation();
 
-
-        while (player.getMoney() < 20){
+        /** Open the while loop to offically start the game, once the player earned 50 dollars, the while loop closed*/
+        while (player.getMoney() < 50){
+            /** Ask player commands */
             System.out.println("\nWhat do you want to do next? \nAvailable options: move, catch, sell, combine, throw away, put in farm, \nget from farm, show my bag, show farm inventory, show location, and undo.");
             String userMovement = input.nextLine().toUpperCase();
 
+            /** Enter the if-statement if the player wants to move to a location*/
             if (userMovement.contains("MOVE")) {
                 System.out.println("Where do you want to move to? Available options: forest, river, grassland, farm, shop");
                 String userNewLocation = input.nextLine().toUpperCase();
                 System.out.println("Moving...");
     
+                /** Check if the player is already at the location they want to go */
                 if (userNewLocation.contains(player.getLocation().getName().toUpperCase())) {
                     System.out.println("Oops! You are already at " + userNewLocation + "!");
                 }
@@ -62,12 +96,12 @@ public class StartGame {
                 else if (userNewLocation.contains("FOREST")) {
                     player.move(forest);
                     currentLocation = player.getLocation();
-                    System.out.println("You are surrounded by tall trees. The fresh air will make you feel relaxed. \nYou hear the frogs croaking, butterfly flying and the birds singing.");
+                    System.out.println("You are surrounded by tall trees. The fresh air makes you feel relaxed. \nYou hear the frogs croaking, the birds singing. Some colorful butterflies \nare flying around you.");
                 }
                 else if (userNewLocation.contains("RIVER")) {
                     player.move(river);
                     currentLocation = player.getLocation();
-                    System.out.println("The river in front of you is very clear. You can't help but take off \nyour shoes and socks and run into the water. There are fish and shrimps swimming, \nas well as some crabs lying by the river.");
+                    System.out.println("The river in front of you is very clear. You can't help but take off \nyour shoes and socks and run into the water. There are fish and shrimps \nswimming, as well as some crabs lying by the river.");
                 }
                 else if (userNewLocation.contains("GRASSLAND")) {
                     player.move(grassland);
@@ -84,6 +118,7 @@ public class StartGame {
                 }
             }
 
+            /** Enter the if-statement if the player wants to catch an animal */
             else if (userMovement.contains("CATCH")) {
                 System.out.println("What animal do you want to catch?");
                 String animalToCatch = input.nextLine().toUpperCase();
@@ -108,6 +143,7 @@ public class StartGame {
                 }  
             }
 
+            /** Enter the if-statement if the player wants to throw away an animal from their bag */
             else if (userMovement.equals("THROW AWAY")) {
                 System.out.println("What animal do you want to throw?");
                 String animalToThrow = input.nextLine().toUpperCase();
@@ -129,14 +165,17 @@ public class StartGame {
                 }  
             }
 
+            /** Enter the if-statement if the player wants to show things in their bag */
             else if (userMovement.equals("SHOW MY BAG")) {
                 System.out.println(player.printAnimalInInventory());
             }
 
+            /** Enter the if-statement if the player wants to show their farm inventory */
             else if (userMovement.equals("SHOW FARM INVENTORY")) {
                 System.out.println(farm.getAnimalInventory());
             }
 
+            /** Enter the if-statement if the player wants to put an animal into their farm inventory */
             else if (userMovement.equals("PUT IN FARM")) {
                 if (currentLocation != farm) {
                     System.out.println("Please move back to your farm first!");
@@ -167,6 +206,7 @@ public class StartGame {
                 
             }
 
+            /** Enter the if-statement if the player wants to take an animal out from their farm inventory */
             else if (userMovement.equals("GET FROM FARM")) {
                 if (currentLocation != farm) {
                     System.out.println("Please move back to your farm first!");
@@ -194,6 +234,7 @@ public class StartGame {
                 } 
             }
             
+            /** Enter the if-statement if the player wants to sell animal(s) */
             else if (userMovement.contains("SELL")) {
                 if (currentLocation == shop) {
                     System.out.println("Which animal do you want to sell?");
@@ -281,6 +322,7 @@ public class StartGame {
                 System.out.println("You are currently at the " + player.getLocation().getName() + ".");
             }
 
+            /** Enter the if-statement if the player wants to combine two animals */
             else if (userMovement.contains("COMBINE")) {
                 System.out.println("What is the name of the first animal you want to use?");
                 String animalCombine1 = input.nextLine().toUpperCase();
@@ -301,7 +343,7 @@ public class StartGame {
                 }
 
                 if (targetCombine1 == null || targetCombine2 == null) {
-                    System.out.println("One or more of the animals you have entered cannot be found in your bag.");
+                    System.out.println("Sorry, one or more of the animals you have entered cannot be found in your bag.");
                 } 
                 else if (targetCombine1 == targetCombine2) {
                     System.out.println("You use the same animal to combine! Please use two different animals to combine!\nYou don't want to waste 2 " + targetCombine1.getName() + "(s) to create 1 new " + targetCombine1.getName() + ", right? :)");
@@ -312,6 +354,7 @@ public class StartGame {
                 }
             }
 
+            /** Enter the if-statement if the player wants to undo the previous command */
             else if (userMovement.contains("UNDO")) {
                 try {
                     if (player.getActions().get(player.getActions().size()-1) == "MOVE") {
@@ -356,9 +399,11 @@ public class StartGame {
                 System.out.println("Please enter a valid command.");
             }
         }
+        /** Once the while loop is closed, the player win the game */
         System.out.println("-------------------------------------------------------");
-        System.out.println("Congratulation! You earned 20 dollars and won the game!");
+        System.out.println("Congratulation! You earned 50 dollars and won the game!");
         System.out.println("-------------------------------------------------------");
+        input.close();
     }
 }
 
