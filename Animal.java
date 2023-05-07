@@ -47,7 +47,7 @@ public class Animal {
     Returns whether the animal has legs or not.
     @return true if the animal has legs, false otherwise.
     */
-    public boolean getHaslegs() {
+    public boolean getHasLegs() {
         return haslegs;
     }
 
@@ -55,7 +55,7 @@ public class Animal {
     Returns whether the animal has wings or not.
     @return true if the animal has wings, false otherwise.
     */
-    public boolean hasWings() {
+    public boolean getHasWings() {
         return haswings;
     }
 
@@ -87,7 +87,7 @@ public class Animal {
     Returns the description of the animal.
     @return the description.
     */
-    public String getdescription() {
+    public String getDescription() {
         return description;
     }
 

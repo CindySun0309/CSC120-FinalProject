@@ -31,12 +31,12 @@ addToInventory()
 removeFromInventory()
 
 methods for the Animal class:
-getHaslegs()
-hasWings()
+getHasLegs()
+getHasWings()
 getLegNum()
 getWingNum()
 getName()
-getdescription()
+getDescription()
 getPrice()
 getLivingLocation()
 

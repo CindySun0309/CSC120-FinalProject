@@ -102,10 +102,10 @@ public class Player {
     public void combine(Animal animal1, Animal animal2) {
         if (this.inventory.contains(animal1) && this.inventory.contains(animal2)) {
             String combinedName = animal1.getName() + animal2.getName();
-            String combinedDescription = animal1.getdescription() + " " + animal2.getdescription();
-            boolean combinedHasLegs = animal1.getHaslegs() && animal2.getHaslegs();
+            String combinedDescription = animal1.getDescription() + " " + animal2.getDescription();
+            boolean combinedHasLegs = animal1.getHasLegs() && animal2.getHasLegs();
             int combinedLegNum = animal1.getLegNum() + animal2.getLegNum();
-            boolean combinedHasWings = animal1.hasWings() && animal2.hasWings();
+            boolean combinedHasWings = animal1.getHasWings() && animal2.getHasWings();
             int combinedWingNum = animal1.getWingNum() + animal2.getWingNum();
             int combinedPrice = animal1.getPrice() + animal2.getPrice() +2;
             Location combinedLivingLocation = null; // Set to null by default
